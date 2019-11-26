@@ -9,7 +9,7 @@ class Hangman:
         pygame.init()
         pygame.mixer.init()
         self.screen = pygame.display.set_mode((800, 600))
-        self.words = ['burger', 'pizza', 'milkshake', 'pour', 'healthy', 'imagine', 'cooperative', 'long''women',
+        self.words = ['burger', 'pizza', 'milkshake', 'pour', 'healthy', 'imagine', 'cooperative', 'long','women',
                       'questionable', 'ear', 'watery', 'train', 'draconian', 'unit']
         self.false_guesses = 0
         self.secretword = self.get_random_word()
