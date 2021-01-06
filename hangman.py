@@ -2,15 +2,13 @@ import pygame
 import os
 import random
 import time
-
+import json
 
 class Hangman:
     def __init__(self):
         pygame.init()
         pygame.mixer.init()
         self.screen = pygame.display.set_mode((800, 600))
-        self.words = ['burger', 'pizza', 'milkshake', 'pour', 'healthy', 'imagine', 'cooperative', 'long','women',
-                      'questionable', 'ear', 'watery', 'train', 'draconian', 'unit']
         self.false_guesses = 0
         self.secretword = self.get_random_word()
         self.blanks = list("_" * len(self.secretword))
@@ -84,7 +82,7 @@ class Hangman:
         self.game_loop()
 
     def get_random_word(self):
-        random_word = random.choice(self.words)
+        random_word = self.get_word()
         return random_word
 
     def get_guess(self):
@@ -136,6 +134,10 @@ class Hangman:
         pygame.mixer.music.load(os.path.join("data", audiofile))
         pygame.mixer.music.set_volume(0.1)
         pygame.mixer.music.play(loops=loop)
+    def get_word(self):
+        with open(os.path.join("data","wordlist.json")) as wordfile:
+            wordlist = json.load(wordfile)
+            return wordlist["words"][random.randint(0,980)]
 
     def render_guess(self):
         self.display_message(" ".join(self.blanks).upper(), (400, 510), color=(20, 100, 100))
